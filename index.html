@@ -15,14 +15,14 @@
       <header>
         <!-- Navigace -->
         <nav class="navigation">
-          <ul class="navigation-list">
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#what-we-do">What We Do</a></li>
-              <li><a href="#trips">Our Trips</a></li>
-              <li><a href="#where-to-go">Where to go</a></li>
-              <li><a href="#reviews">Reviews</a></li>
+          <ul class="navigation-list" id="menu">
+              <li><a href="#" class="scroll-btn">About Us</a></li>
+              <li><a href="#what-we-do" class="scroll-btn">What We Do</a></li>
+              <li><a href="#trips" class="scroll-btn">Our Trips</a></li>
+              <li><a href="#where-to-go" class="scroll-btn">Where to go</a></li>
+              <li><a href="#reviews" class="scroll-btn">Reviews</a></li>
           </ul>
-          <div class="icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1200px-Hamburger_icon_white.svg.png"/></div>
+          <div class="icon" id="hamburger"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1200px-Hamburger_icon_white.svg.png"/></div>
         </nav>
 
         <!--hero section-->
@@ -41,7 +41,7 @@
 
       <main>
         <!--About Us section-->
-        <section class="about">
+        <section id="about">
           <div class="about-wrapper">
             <!--<div class="about-items">-->
               <div class="about-text">
@@ -58,7 +58,7 @@
         </section>
 
         <!--What we do section-->
-        <section class="what-we-do">
+        <section id="what-we-do">
           <!--<div class="content-container">-->
               <div class="what-we-do-wrapper">
                 <div class="what-we-do-text">
@@ -76,7 +76,7 @@
           </section>
 
           <!--Trip karty section-->
-          <section class="trips">
+          <section id="trips">
             <div class="trips-wrapper">
             <!--<div class="content-container">-->  
               <div class="trips trips1"></div>
@@ -96,7 +96,7 @@
           </section>
 
         <!--Where do you want to go section-->
-        <section class="where-to-go">
+        <section id="where-to-go">
           <!--<div class="content-container">-->
             <div class="where-to-go-wrapper">
               <div class="where-to-go-1">
@@ -115,7 +115,7 @@
         </section>
 
         <!--Reviews section-->
-        <section class="reviews">
+        <section id="reviews">
           <div class="reviews-wrapper">
             <div class="reviews-text">
               <h2>Reviews</h2>
@@ -146,10 +146,10 @@
       <footer>
         <div class="footer-wrapper">
           <div class="footer-images">
-            <div class="footer-img1"></div>
-            <div class="footer-img2"></div>
-            <div class="footer-img3"></div>
-            <div class="footer-img4"></div>
+            <div class="footer-img1"><img src="/images/alexey-fedenkov-BaCZYH9RLmQ-unsplash.jpg" alt="img1"/></div>
+            <div class="footer-img2"><img src="/images/omer-salom-LoijtQXXNhs-unsplash.jpg" alt="img2"/></div>
+            <div class="footer-img3"><img src="/images/vincentiu-solomon-7MH4ped6_Mo-unsplash.jpg" alt="img3"/></div>
+            <div class="footer-img4"><img src="/images/daniel-tseng-73lmMKhi2U8-unsplash.jpg" alt="img4"/></div>
           </div>
           <div class="footer-contact">
             <h6>
@@ -161,5 +161,15 @@
       </footer>
 
     </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', function() {
+        menu.classList.toggle('show');
+    });
+});
+    </script>
   </body>
 </html>
