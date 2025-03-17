@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 h2 {
     font-size: 30px;
 }
@@ -54,16 +58,44 @@ nav {
 
 .navigation-list {
     width: 60%;
-    margin: 20px 20px;
+    /*margin: 20px 20px;*/
     display: flex;
     justify-content: space-between;
     list-style: none;
-    border: 1px solid black;
 }
-@media (min-width: 756px) {
+@media screen and (max-width: 768px) {
     .navigation-list {
-      width: 60%;
-      margin: 0 auto;
+        display: flex; /* Už nebudeme používat display: none */
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background-color: #33292a;
+        padding: 0 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        min-width: max-content;
+        text-align: center;
+        
+        /* Přidáváme animaci */
+        max-height: 0; /* Menu bude výchozím stavem "schované" */
+        overflow: hidden; /* Skryjeme obsah, dokud se neotevře */
+        transition: max-height 0.4s ease-out; /* Hladká animace */
+    }
+
+    .navigation-list.show {
+        max-height: 300px; /* Přibližná výška, přizpůsobíš podle obsahu */
+    }
+
+    /* Přidáme trochu mezery mezi položkami */
+    .navigation-list li {
+        list-style: none;
+        padding: 10px 0;
+        opacity: 0; /* Skryjeme text */
+        transition: opacity 0.3s ease-in 0.1s; /* Zpoždění, aby se text zobrazil až po otevření */
+    }
+
+    .navigation-list.show li {
+        opacity: 1;
     }
 }
 
@@ -75,6 +107,7 @@ nav li {
 a {
     text-decoration: none;
     color: white;
+    white-space: nowrap;
 }
 
 /* Hamburger */
@@ -89,14 +122,14 @@ a {
     width: 100%;
     display: block;
   }
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     nav ul a {
-      display: none;
+      /*display: none;*/
     }
     .icon {
       display: block;
     }
-  }
+}
 
 /* navigace pro mobily */
 .icon {
@@ -174,7 +207,7 @@ a {
 }
 
 /* main */
-.about {
+#about {
     display: flex;
     justify-content: center;
 }
@@ -193,11 +226,13 @@ a {
     .about-wrapper {
         flex-direction: column;
         width: 90%;
+        padding-right: 0;
+        padding-left: 0;
+        margin: 60px 0 80px 0;
     }
 }
 
 .about-text {
-    /*padding-right: 40px;*/
     padding-right: 10%;
     font-size: 16px;
     text-align: left;
@@ -219,7 +254,7 @@ a {
 @media (max-width: 768px) {
     .about-image {
         width: 100%;
-        padding-bottom: 20px;
+        /*padding-bottom: 20px;*/
     }
 }
 
@@ -236,12 +271,17 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     border-radius: 5px;
+}
+@media (max-width: 768px) {
+    .about-image img {
+        /*border-radius: 0;*/
+    }
 }
 
 /* Section - What-we-do */
-.what-we-do {
+#what-we-do {
     background-color: #33292a;
     display: flex;
     margin-bottom: 0;
@@ -256,6 +296,8 @@ a {
 @media (max-width: 768px) {
     .what-we-do-wrapper {
         width: 90%;
+        margin-bottom: 40px;
+        margin-top: 60px;
     }
 }
 
@@ -319,7 +361,7 @@ a {
 
 /* Section - Trips */
 
-.trips {
+#trips {
     display: flex;
     justify-content: center;
     border: 1px solid green;
@@ -327,7 +369,7 @@ a {
     padding-top: 80px;
 }
 @media (max-width: 768px) {
-    .trips {
+    #trips {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
@@ -349,11 +391,11 @@ a {
         height: auto;
         grid-template-columns: 1fr;
         gap: 4px;
-        padding: 40px 0 60px 0;
+        padding: 60px 0 60px 0;
     }
 }
 
-.trips div {
+#trips div {
     border: 1px solid yellow;
     aspect-ratio: 1 / 1;
     background-repeat: no-repeat;
@@ -362,7 +404,7 @@ a {
     border-radius: 5px;
 }
 @media (max-width: 768px) {
-    .trips div {
+    #trips div {
         aspect-ratio: auto !important;
         text-align: center;
         font-size: small;
@@ -371,7 +413,7 @@ a {
 
 
 @media (max-width: 576px) {
-    .trips div {
+    #trips div {
     }
 }
 
@@ -453,7 +495,7 @@ a {
 
 
 /* Section - Where-to-go */
-.where-to-go {
+#where-to-go {
     border: 1px solid red;
     display: flex;
     flex-direction: column;
@@ -537,7 +579,7 @@ a {
 
 
 /* Section - Reviews */
-.reviews {
+#reviews {
     border: 1px solid red;
     display: flex;
     justify-content: center;
@@ -621,19 +663,13 @@ a {
 
 }
 
-.reviews1 p {
-    margin-bottom: 20px;
+.reviews1 p + p, .reviews2 p + p {
+   /* margin-bottom: 20px;*/
+   margin-top: 20px;
+   
 }
 
-.reviews1 p:last-of-type {
-    font-weight: bold;
-}
-
-.reviews2 p {
-    margin-bottom: 20px;
-}
-
-.reviews2 p:last-of-type {
+.reviews1 p:last-of-type, .reviews2 p:last-of-type {
     font-weight: bold;
 }
 
@@ -641,7 +677,8 @@ a {
 /* footer */
 
 .footer-wrapper {
-    /*width: 100%;*/
+    width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -650,10 +687,8 @@ a {
 }
 
 .footer-images {
-    width: 100%;
-    height: auto;
     display: flex;
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap;
 }
 
 .footer-images div {
@@ -665,12 +700,31 @@ a {
     background-size: cover;*/
 }
 
-/*.footer-images img {
-    width: 100%;
-    height: 80%;
-}*/
+@media screen and (max-width: 768px) {
+    .footer-images {
+        flex-direction: column; /* Stáhne obrázky pod sebe */
+    }
 
-.footer-img1 {
+    .footer-images div {
+        width: 100%; /* Každý obrázek zabere celou šířku */
+        height: 230px;
+    }
+}
+
+.footer-images img {
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 768px){
+    .footer-images img {
+        /*display: block;*/
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+/*.footer-img1 {
     background-image: url(/images/alexey-fedenkov-BaCZYH9RLmQ-unsplash.jpg);
 }
 
@@ -684,16 +738,24 @@ a {
 
 .footer-img4 {
     background-image: url(/images/daniel-tseng-73lmMKhi2U8-unsplash.jpg);
-}
+}*/
 
 .footer-img1, .footer-img3 {
     flex-grow: 1;
-    width: 100%;
-    height: 100%;
-    /*width: 50%;*/
+    width: 50%;
 }
 
 .footer-img2, .footer-img4 {
     flex-grow: 2;
-    /*width: 50%;*/
+    width: 50%;
+}
+
+footer {
+    background-color: #333333;
+    color:#f2f2f2;
+    /*display: flex;*/
+}
+
+.footer-conctact {
+    width: 100%;
 }
