@@ -11,12 +11,12 @@
     <title>Your travel assistant</title>
   </head>
   <body>
-    <div class="container">
+    <div class="content-container">
       <header>
         <!-- Navigace -->
         <nav class="navigation">
           <ul class="navigation-list" id="menu">
-              <li><a href="#" class="scroll-btn">About Us</a></li>
+              <li><a href="#about" class="scroll-btn">About Us</a></li>
               <li><a href="#what-we-do" class="scroll-btn">What We Do</a></li>
               <li><a href="#trips" class="scroll-btn">Our Trips</a></li>
               <li><a href="#where-to-go" class="scroll-btn">Where to go</a></li>
@@ -30,9 +30,9 @@
           <div class="hero-wrapper">
             <div class="hero-text">
               <h1>
-                Your
-                Travel
-                Assistant
+                <span>Your</span>
+                <span>Travel</span>
+                <span>Assistant</span>
               </h1>
             </div>
           </div>
@@ -103,11 +103,11 @@
                 <h2>Where do you want to go?</h2>
               </div>
               <div class="where-to-go-2">
-                <p>You’ll find 21 detailed adventure guides, over a hundred practical travel tips, book reviews on anything outdoors related, packing lists on a range of outdoor activities including kayaking, backpacking and camping as well as honest hotel and B&B reviews. </p> <br>
+                <p>You’ll find 21 detailed adventure guides, over a hundred practical travel tips, book reviews on anything outdoors related, packing lists on a range of outdoor activities including kayaking, backpacking and camping as well as honest hotel and B&B reviews. </p> 
                 <p>Contact us and we will help you!</p>
-                <div class="contact-wrapper">
+                <div class="button">
                 <button class="contact-button">
-                <p>CONTACT US</p>
+                CONTACT US
                 </button>
                 </div>
               </div>
@@ -144,7 +144,7 @@
       </main>
 
       <footer>
-        <div class="footer-wrapper">
+        <div class="footer">
           <div class="footer-images">
             <div class="footer-img1"><img src="/images/alexey-fedenkov-BaCZYH9RLmQ-unsplash.jpg" alt="img1"/></div>
             <div class="footer-img2"><img src="/images/omer-salom-LoijtQXXNhs-unsplash.jpg" alt="img2"/></div>
@@ -168,6 +168,38 @@ document.addEventListener("DOMContentLoaded", function() {
 
     hamburger.addEventListener('click', function() {
         menu.classList.toggle('show');
+    });
+});
+
+
+const navLinks = document.querySelectorAll('.navigation-list a');
+
+// Active odkazy
+navLinks.forEach(link => {
+    link.addEventListener('click', function () {
+        navLinks.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+
+window.addEventListener('scroll', function () {
+    let currentSection = '';
+
+    // Viditelné sekce
+    document.querySelectorAll('section').forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 100) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    // Třídy active k sekcím
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === currentSection) {
+            link.classList.add('active');
+        }
     });
 });
     </script>
